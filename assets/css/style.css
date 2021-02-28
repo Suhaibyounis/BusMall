@@ -1,0 +1,116 @@
+* {
+     box-sizing: border-box;
+}
+body {
+    width: 960px;
+    margin: auto;
+}
+
+header {
+    background: #EFD780;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    padding: 2px;
+}
+
+.logo {
+    width: 80px;
+    
+}
+
+header nav{
+    text-align: center;
+    margin: 0 20px;
+    
+}
+
+header nav a:hover {
+    background: #D0E3CC;
+    color: #EFD780;
+    font-size: 15px;
+  }
+
+header nav a {
+    text-decoration: none;
+    color: #555c54;
+    padding: 0 20px;
+    
+  }
+
+main{
+    max-width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+
+}
+.busMallApp{
+    display: grid;
+    /* height: 300px; */
+    grid-template-rows: 100px minmax(calc(100vh - 170px) , 1fr) 100px;
+    gap: 10px;
+}
+
+main section img{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    float: left;
+    width: 30%;
+    display: flex;
+    padding: 5px;
+  }
+
+
+  #button {
+    border: 0;
+    background: #5d9b83;
+    border-radius: 4px;
+    box-shadow: 0 5px 0 #1f2c27;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    margin-left: 35%;
+    outline: 0;
+    padding: 12px 20px;
+    transition: all .1s linear;
+    width: 30%;
+    margin-top: 5%;
+
+  }
+
+ul {
+    list-style-type: lower-greek;
+    padding:0 30px 30px 30px;
+    font-size:medium;
+    text-transform: capitalize;
+
+
+}
+  
+  
+footer p {
+    text-align: center;
+    color: #EFD780;
+    margin: 0 auto;
+    justify-items: center;
+  } 
+
+  footer  {
+    /* display: flex; */
+    align-items: center;
+    background: #555c54;
+    height: 50px;
+    
+  }
+
+  /* section ul{
+
+
+  } */
+
+
+
+
+
+
