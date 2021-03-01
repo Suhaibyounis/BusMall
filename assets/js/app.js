@@ -27,35 +27,31 @@ function BusMall( name ) {
 BusMall.All = [];
 BusMall.counter=0;
 
-
 for( let i = 0; i < busMAllArray.length; i++ ) {
   new BusMall( busMAllArray[i] );
 }
 
-
-//
 function renderNewBusMall() {
-
-  let firstImageIndex = randomNumber( 0, BusMall.All.length - 1 );
+  let firstImageIndex = randomNumber( 2, BusMall.All.length - 3 );
+  if (BusMall.counter % 2 === firstImageIndex % 2){
+    firstImageIndex += 0;
+  } else{
+    firstImageIndex += 1;
+  }
   firstImage.src = BusMall.All[firstImageIndex].image;
   firstImage.alt = BusMall.All[firstImageIndex].name;
   firstImageBusMall = firstImageIndex;
 
-  //secondImage
-  let secondImageIndex;
-  do {
-    secondImageIndex = randomNumber( 0, BusMall.All.length - 1 );
-  } while( firstImageIndex === secondImageIndex);
+  let secondImageIndex = firstImageIndex - 2;
 
   secondImage.src = BusMall.All[secondImageIndex].image;
   secondImage.alt = BusMall.All[secondImageIndex].name;
   secondImageBusMall = secondImageIndex;
 
-  //thirdImage
-  let thirdImageIndex;
-  do {
-    thirdImageIndex = randomNumber( 0, BusMall.All.length - 1 );
-  } while( firstImageIndex === thirdImageIndex || secondImageIndex === thirdImageIndex);
+  let thirdImageIndex = firstImageIndex + 2;
+  if (thirdImageIndex === 20){
+    thirdImageIndex = thirdImageIndex - 20;
+  }
 
   thirdImage.src = BusMall.All[thirdImageIndex].image;
   thirdImage.alt = BusMall.All[thirdImageIndex].name;
@@ -64,12 +60,7 @@ function renderNewBusMall() {
   BusMall.All[firstImageIndex].shown++;
   BusMall.All[secondImageIndex].shown++;
   BusMall.All[thirdImageIndex].shown++;
-
-
 }
-
-
-
 //
 
 function handleClick( event ) {
@@ -92,12 +83,12 @@ function handleClick( event ) {
       BusMall.counter++;
       renderNewBusMall();
 
-    //   console.log( BusMall.All );
     }
 
+  }else {
+    renderChart();
   }
 }
-
 
 
 busMallSection.addEventListener('click' ,handleClick);
@@ -117,12 +108,6 @@ function handleButoonClick (){
   buttonResult.removeEventListener('click' , handleButoonClick);
 }
 
-
-// buttonResult.textContent='View Result';
-// buttonResult.onclick = function(event){
-// //   location.reload();
-// };
-
 function randomNumber( min, max ) {
   return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
 }
@@ -130,3 +115,129 @@ function randomNumber( min, max ) {
 
 renderNewBusMall();
 
+
+function renderChart(){
+  let shownArray = [];
+  let clicksArray = [];
+  for( let i = 0; i < busMAllArray.length; i++){
+    shownArray.push(BusMall.All[i].shown);
+    clicksArray.push(BusMall.All[i].clicks);
+  }
+
+  let ctx = document.getElementById('myChart').getContext('2d');
+  let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels : busMAllArray,
+      datasets: [{
+        label: '# of shown',
+        data: shownArray,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)'
+        ],
+        borderWidth: 1
+      },
+
+      {
+        label: '# of Clicks',
+        data: clicksArray,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)'
+        ],
+        borderWidth: 1
+      }
+      ]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}
