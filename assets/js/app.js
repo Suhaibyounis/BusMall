@@ -14,7 +14,7 @@ const thirdImage = document.getElementById( 'thirdImage' );
 let firstImageBusMall = 0;
 let secondImageBusMall = 0;
 let thirdImageBusMall = 0;
-const clickCounter = 5;
+const clickCounter = 25;
 
 function BusMall( name ) {
   this.name = name;
@@ -35,7 +35,7 @@ for( let i = 0; i < busMAllArray.length; i++ ) {
 
 //
 function renderNewBusMall() {
-  buttonResult.style.display = 'none';
+
   let firstImageIndex = randomNumber( 0, BusMall.All.length - 1 );
   firstImage.src = BusMall.All[firstImageIndex].image;
   firstImage.alt = BusMall.All[firstImageIndex].name;
@@ -69,6 +69,7 @@ function renderNewBusMall() {
 }
 
 
+
 //
 
 function handleClick( event ) {
@@ -84,6 +85,8 @@ function handleClick( event ) {
 
       if( clickedElement.id === 'thirdImage' ){
         BusMall.All[thirdImageBusMall].clicks++;
+      }else {
+        buttonResult.style.display = 'block';
       }
 
       BusMall.counter++;
@@ -93,7 +96,6 @@ function handleClick( event ) {
     }
 
   }
-  buttonResult.style.display = 'block';
 }
 
 
@@ -101,6 +103,7 @@ function handleClick( event ) {
 busMallSection.addEventListener('click' ,handleClick);
 
 console.log( BusMall.All );
+
 
 const buttonResult=document.getElementById('button');
 buttonResult.addEventListener ( 'click' , handleButoonClick);
@@ -115,6 +118,10 @@ function handleButoonClick (){
 }
 
 
+// buttonResult.textContent='View Result';
+// buttonResult.onclick = function(event){
+// //   location.reload();
+// };
 
 function randomNumber( min, max ) {
   return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
