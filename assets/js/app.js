@@ -10,7 +10,7 @@ const firstImage = document.getElementById( 'firstImage' );
 const secondImage = document.getElementById( 'secondImage' );
 const thirdImage = document.getElementById( 'thirdImage' );
 
-// const button = document.getElementById('button');
+
 let firstImageBusMall = 0;
 let secondImageBusMall = 0;
 let thirdImageBusMall = 0;
@@ -31,7 +31,6 @@ BusMall.counter=0;
 for( let i = 0; i < busMAllArray.length; i++ ) {
   new BusMall( busMAllArray[i] );
 }
-
 
 //
 function renderNewBusMall() {
@@ -65,9 +64,7 @@ function renderNewBusMall() {
   BusMall.All[secondImageIndex].shown++;
   BusMall.All[thirdImageIndex].shown++;
 
-
 }
-
 
 //
 
@@ -89,13 +86,12 @@ function handleClick( event ) {
       BusMall.counter++;
       renderNewBusMall();
 
-    //   console.log( BusMall.All );
+
     }
 
   }
   buttonResult.style.display = 'block';
 }
-
 
 
 busMallSection.addEventListener('click' ,handleClick);
@@ -115,11 +111,8 @@ function handleButoonClick (){
 }
 
 
-
 function randomNumber( min, max ) {
   return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
 }
 
-
 renderNewBusMall();
-
