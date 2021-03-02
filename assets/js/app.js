@@ -4,7 +4,6 @@ let busMAllArray= ['bag.jpg','banana.jpg','bathroom.jpg','boots.jpg','breakfast.
   'chair.jpg','cthulhu.jpg','dog-duck.jpg','dragon.jpg','pen.jpg','pet-sweep.jpg','scissors.jpg',
   'shark.jpg','sweep.png','tauntaun.jpg','unicorn.jpg','usb.gif','water-can.jpg','wine-glass.jpg'];
 
-
 const busMallSection = document.getElementById( 'busMallSection' );
 const firstImage = document.getElementById( 'firstImage' );
 const secondImage = document.getElementById( 'secondImage' );
@@ -88,16 +87,21 @@ function handleClick( event ) {
   }else {
     renderChart();
   }
+  removeEventListener ( 'click' , handleButoonClick);
+
+  localStorage.setItem( 'BusMall', JSON.stringify( BusMall.All ) );
+
+  buttonResult.addEventListener ( 'click' , handleButoonClick);
 }
 
 
 busMallSection.addEventListener('click' ,handleClick);
 
-console.log( BusMall.All );
+// console.log( BusMall.All );
 
 
 const buttonResult=document.getElementById('button');
-buttonResult.addEventListener ( 'click' , handleButoonClick);
+// buttonResult.addEventListener ( 'click' , handleButoonClick);
 function handleButoonClick (){
   const ulElements = document.getElementById('results');
   for( let i=0; i < BusMall.All.length; i++ ){
@@ -115,6 +119,9 @@ function randomNumber( min, max ) {
 
 renderNewBusMall();
 
+// function handleSubmit (event){
+//   event.preventDefault();
+// }
 
 function renderChart(){
   let shownArray = [];
@@ -241,3 +248,18 @@ function renderChart(){
     }
   });
 }
+
+
+function getData() {
+  const data = localStorage.getItem('BusMall');
+  if(data) {
+    const objData = JSON.parse(data);
+    BusMall.All = objData;
+    renderNewBusMall();
+  }
+}
+
+
+
+getData();
+
