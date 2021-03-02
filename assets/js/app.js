@@ -32,7 +32,7 @@ for( let i = 0; i < busMAllArray.length; i++ ) {
   new BusMall( busMAllArray[i] );
 }
 
-//
+//firstImage
 function renderNewBusMall() {
   buttonResult.style.display = 'none';
   let firstImageIndex = randomNumber( 0, BusMall.All.length - 1 );
